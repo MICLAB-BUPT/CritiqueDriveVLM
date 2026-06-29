@@ -46,14 +46,6 @@ uv sync --extra build
 
 ---
 
-## TODO List
-
-- [ ] Release the training code
-- [ ] Release the inference code
-- [ ] Release model checkpoints
-
----
-
 ## Acknowledgments
 
 This project builds upon the following open-source works:
