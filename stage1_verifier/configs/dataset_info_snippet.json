@@ -1,5 +1,5 @@
 {
-  "_comment": "Add these entries to LLaMA-Factory's data/dataset_info.json, then point file_name at the datasets you downloaded from HuggingFace. `drive_lmm` = warm-up SFT (CoT). `verifier` = verifier SFT — MUST be the coach-style data that contains BOTH scores AND a natural-language critique, because Stage-2 RL reads the critique from the verifier's output. `drive_lmm_no_cot` = Stage-3 Student data (answer only).",
+  "_comment": "Add these entries to LLaMA-Factory's data/dataset_info.json, then point file_name at your dataset files. `drive_lmm` = warm-up SFT (CoT). `verifier` = verifier SFT — MUST be the coach-style data that contains BOTH scores AND a natural-language critique, because Stage-2 RL reads the critique from the verifier's output. `drive_lmm_no_cot` = Stage-3 Student data (answer only).",
 
   "drive_lmm": {
     "file_name": "DriveLMMo1_TRAIN_LLaMA_Factory.json",

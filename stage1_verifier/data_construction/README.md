@@ -1,15 +1,14 @@
 # Verifier Data Construction (optional — provenance only)
 
-> **You do NOT need to run any of this.** The curated verifier dataset is
-> released on HuggingFace — just download it and go straight to
-> [`../configs/verifier_sft.yaml`](../configs/verifier_sft.yaml).
+> **You do NOT need to run any of this** to use the framework — go straight to
+> [`../configs/verifier_sft.yaml`](../configs/verifier_sft.yaml) with your
+> verifier dataset.
 >
 > These scripts are provided **only to document how the verifier training set
 > was built** from the DriveLMM-o1 data. Reproducing them requires a strong
-> judge model (Qwen3-VL-235B) and multi-GPU vLLM, and is not necessary to use
-> the framework.
+> judge model (Qwen3-VL-235B) and multi-GPU vLLM.
 
-## Pipeline (how the released verifier dataset was produced)
+## Pipeline (how the verifier dataset was produced)
 
 ```
 1_build_positive_data.py      # GT reasoning/answers -> positive samples (all scores = 1.0)

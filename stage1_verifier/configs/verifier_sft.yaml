@@ -22,8 +22,7 @@ freeze_trainable_layers: 0
 # Register `verifier` in data/dataset_info.json first (see dataset_info_snippet.json).
 # This is the curated verifier dataset (GT positives + hard negatives). It MUST
 # contain both the scores AND a natural-language critique, because Stage-2 RL reads
-# the critique from the verifier. Download the released version from HuggingFace
-# instead of rebuilding it (data_construction/ is optional provenance).
+# the critique from the verifier. (data_construction/ documents how it was built.)
 dataset: verifier
 template: qwen3_vl
 cutoff_len: 8192

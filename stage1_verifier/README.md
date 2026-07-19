@@ -8,9 +8,10 @@ This stage produces two models via **[LLaMA-Factory](https://github.com/hiyouga/
 2. **Multi-dimensional verifier** — a frozen judge that scores a response over
    **perception / logic / safety** and produces a critique. Used in Stage 2.
 
-> **This stage is about training.** The datasets are released on HuggingFace —
-> you do **not** need to run any data-construction code. Download the data,
-> register it, and run the two SFT configs below.
+> **This stage is about training.** You do **not** need to run any
+> data-construction code to use the framework — register your dataset files and
+> run the two SFT configs below. See `data_construction/` for how the verifier
+> dataset was built.
 
 ```
 stage1_verifier/
@@ -23,7 +24,7 @@ stage1_verifier/
 └── data_construction/             # OPTIONAL: how the verifier dataset was built (no need to run)
 ```
 
-## Datasets (download from HuggingFace)
+## Datasets
 
 | Config dataset name | File | Purpose |
 |---|---|---|
@@ -36,7 +37,7 @@ stage1_verifier/
 ```bash
 # 1. Register the datasets: merge configs/dataset_info_snippet.json into
 #    LLaMA-Factory's data/dataset_info.json, and set each file_name to your
-#    downloaded file.
+#    dataset file.
 
 # 2. Warm-up SFT of the base policy
 llamafactory-cli train stage1_verifier/configs/warmup_sft.yaml
@@ -55,6 +56,6 @@ served there via `serve_verifier.sh`.
 
 The verifier training set is GT positives + hard negatives that are mined from a
 baseline policy, scored, meta-verified by Qwen3-VL-235B, and adjudicated. The
-full pipeline is in [`data_construction/`](data_construction/) for transparency —
-but the curated dataset is released, so you never need to run it.
+full pipeline is in [`data_construction/`](data_construction/) for transparency,
+but you do not need to run it to use the framework.
 </details>

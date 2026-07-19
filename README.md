@@ -82,7 +82,7 @@ installed separately from source.
 
 ```
 CritiqueDriveVLM/
-├── stage1_verifier/    # Warm-up SFT + verifier SFT (LLaMA-Factory configs); data on HF
+├── stage1_verifier/    # Warm-up SFT + verifier SFT (LLaMA-Factory configs)
 ├── stage2_rl/          # Critique-Driven Multi-Turn RL (verl / GRPO): reward + interaction
 ├── stage3_distill/     # Latent Thought Distillation (Teacher -> CoT-free Student)
 ├── inference/          # Teacher / Student / latency inference
@@ -103,8 +103,8 @@ via `stage1_verifier/preprocess/stitch_multiview.py`.
 
 **Stage 1 — Warm-up SFT & Verifier Construction** ([details](stage1_verifier/README.md))
 
-Two LoRA SFTs via LLaMA-Factory. Download the datasets from HuggingFace, register
-them, then train (no data-construction code needs to be run):
+Two LoRA SFTs via LLaMA-Factory. Prepare the datasets (see `stage1_verifier`),
+register them, then train:
 ```bash
 llamafactory-cli train stage1_verifier/configs/warmup_sft.yaml     # base policy (<think>/<answer>)
 llamafactory-cli train stage1_verifier/configs/verifier_sft.yaml   # multi-dimensional verifier
