@@ -1,0 +1,58 @@
+# ==== CritiqueDriveVLM: keep code only, exclude heavy artifacts ====
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# uv
+uv.lock
+
+# Data & datasets (download from HuggingFace / nuScenes)
+*.json
+*.jsonl
+*.parquet
+*.csv
+*.xlsx
+data/
+datasets/
+stitched_output/
+
+# Model weights / checkpoints / cached tensors
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.ckpt
+checkpoints/
+outputs/
+lora/
+
+# Inference / evaluation results
+results/
+results_reflexion/
+score/
+scored_results/
+error_analysis_output/
+
+# Logs
+*.log
+logs/
+wandb/
+swanlog/
+.swanlab/
+ray_tmp/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Keep small config JSONs that ARE part of the code
+!stage3_distill/ds_config_zero2.json
+!stage1_verifier/configs/dataset_info_snippet.json
+!**/configs/**/*.json

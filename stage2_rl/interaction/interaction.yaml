@@ -1,0 +1,5 @@
+interaction:
+  - name: "reflexion_agent"
+    class_name: "interaction.reflexion_interaction.ReflexionInteraction"
+    config:
+      max_attempts: 2  

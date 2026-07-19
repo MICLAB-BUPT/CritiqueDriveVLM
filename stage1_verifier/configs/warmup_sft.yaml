@@ -1,0 +1,48 @@
+### CritiqueDriveVLM - Stage 1: Warm-up SFT of the base policy (LLaMA-Factory)
+### Enforces the <think>...</think><answer>...</answer> reasoning format.
+### Run: llamafactory-cli train configs/warmup_sft.yaml
+
+### model
+model_name_or_path: /path/to/models/Qwen3-VL-8B-Instruct   # paper base model
+image_max_pixels: 1003520          # ~1280*28*28, Qwen3-VL max resolution
+trust_remote_code: true
+flash_attn: fa2
+
+### method
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_rank: 64
+lora_alpha: 128
+lora_target: all                   # tune all linear layers (vision + language)
+freeze_vision_tower: true          # freeze the vision tower to avoid overfitting
+freeze_trainable_layers: 0
+
+### dataset
+# Register `drive_lmm` in LLaMA-Factory's data/dataset_info.json first
+# (see configs/dataset_info_snippet.json). Points to the warm-up SFT data
+# (DriveLMM-o1 CoT in <think>/<answer> format).
+dataset: drive_lmm
+template: qwen3_vl
+cutoff_len: 8192                    # driving CoT text can be long
+overwrite_cache: false
+preprocessing_num_workers: 16
+
+### output
+output_dir: /path/to/models/Qwen3-VL-8B-sft/lora
+logging_steps: 5
+save_steps: 100
+save_total_limit: 3
+plot_loss: false
+overwrite_output_dir: true
+report_to: none
+
+### train
+per_device_train_batch_size: 4     # 4 * grad_accum 4 * 8 GPUs = 128 global batch
+gradient_accumulation_steps: 4
+learning_rate: 1.0e-4              # LoRA lr (paper)
+num_train_epochs: 2.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.05
+bf16: true
+ddp_timeout: 180000000
